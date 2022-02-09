@@ -1,10 +1,8 @@
 name: 'hello world'
 
 on:
-  push:
-    branches-ignore:
-    - main
-
+  schedule:
+    - cron: '0/6 * * * *'
 jobs:
   hello_world:
     name: 'hello world'
