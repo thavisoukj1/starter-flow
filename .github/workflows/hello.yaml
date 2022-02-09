@@ -1,0 +1,29 @@
+name: 'hello world'
+
+on:
+  schedule:
+    - cron: '0/6 * * * *'
+jobs:
+  hello_world:
+    name: 'hello world'
+    runs-on: ubuntu-latest
+    environment: production
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # Initialize a new or existing terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: hello world
+      run: |
+        echo "sup"
+    - name: Try to fail
+      run: exit 0
+    - name: Print message if we don't fail
+      run: echo Should not get here
