@@ -1,9 +1,25 @@
-name: GitHub Actions Demo
-on: 
-  schedule:
-    - cron: '0/29 * * * *'
+name: 'hello webhook'
+
+on:
+  repository_dispatch:
+    types: [on-demand-test]
+
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+  hello_world:
+    name: 'hello world'
+    runs-on: wp-dev
+    environment: staging
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # Initialize a new or existing terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: hello world
+      run: echo "sup"
